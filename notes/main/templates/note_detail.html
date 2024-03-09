@@ -1,0 +1,24 @@
+<!-- note_detail.html -->
+{% extends 'base.html' %}
+{% block title %}My Special Page{% endblock %}
+{% block content %}
+
+<main class="container">
+    <div class="bg-body-tertiary p-5 rounded mt-3">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" id="title" name="title" value="{{ note.title }}">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Note text</label>
+                <textarea class="form-control" id="content" rows="3" name="content">{{ note.content }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="delete/" class="btn btn-danger">Delete</a>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

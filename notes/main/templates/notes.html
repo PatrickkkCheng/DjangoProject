@@ -1,0 +1,44 @@
+<!-- notes.html -->
+{% extends 'base.html' %}
+
+{% block title %}My Special Page{% endblock %}
+
+{% block content %}
+<!--   <h2>Welcome to my special page!</h2>-->
+<!--   <p>This is the content of my special page.</p>-->
+
+<main class="container">
+    <div class="bg-body-tertiary p-5 rounded mt-3">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Note text</label>
+                <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Save Note</button>
+        </form>
+        <!--         <h1>Bottom Navbar example</h1>-->
+        <!--         <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>-->
+        <!--         <a class="btn btn-lg btn-primary" href="/docs/5.3/components/navbar/" role="button">View navbar docs »</a>-->
+    </div>
+</main>
+<main class="container">
+    <div class="bg-body-tertiary p-5 rounded mt-3">
+        {% for note in notes %}
+        <br>
+        <a class="navbar-brand" href="note/{{note.pk}}" role="button">
+        <div class="bg-body-tertiary p-5 rounded">
+            <h3>{{ note.pk }}. {{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <p>{{ note.created }}</p>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}
